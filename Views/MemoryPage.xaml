@@ -1,0 +1,199 @@
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:convert="clr-namespace:Examen.Convertir"
+    xmlns:cx="clr-namespace:Examen.ViewModel"
+    x:Class="Examen.Views.MemoryPage"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="#0f172a">
+
+    <ContentPage.Resources>
+        <convert:base64Image 
+            x:Key="BaseArray" />
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <cx:MemoryViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                        <RowDefinition 
+                            Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition 
+                            Width="*" />
+                        <ColumnDefinition 
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="5, 20, 5, 20"
+                        Text="Crea o Actualiza una Nota de Recordatorio"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Title"/>
+
+                    <Label 
+                        Margin="15, 20, 10, 5"
+                        Grid.Row="1" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Text="Fecha" 
+                        FontSize="16"
+                        TextColor="White"
+                        FontAttributes="Bold" />
+
+                    <DatePicker 
+                        Margin="10, 10, 10, 10"
+                        Grid.Row="2" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Date="{Binding Fecha}" 
+                        FontSize="16" 
+                        TextColor="WhiteSmoke"/>
+
+                    <Label 
+                        Grid.Row="3" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Margin="15, 20, 10, 5"
+                        Text="Descripción" 
+                        FontSize="16" 
+                        TextColor="White"
+                        FontAttributes="Bold"/>
+
+                    <Entry 
+                        Grid.Row="4" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Margin="10, 10, 10, 10"
+                        Text="{ Binding Desc }" 
+                        FontSize="16" 
+                        TextColor="WhiteSmoke"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="FillAndExpand" 
+                        Placeholder="Ingrese la descripción de la nota aquí"/>
+
+                    <Label 
+                        Grid.Row="5" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Margin="15, 20, 10, 5"
+                        Text="Grabación de audio" 
+                        FontSize="16" 
+                        TextColor="White"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="6" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Margin="15, 10, 15, 10"
+                        Command="{Binding AudioCommand}" 
+                        BackgroundColor="#7678ED"  
+                        FontSize="16" 
+                        HeightRequest="50"
+                        x:Name="GbBoton" 
+                        CornerRadius="0" 
+                        Text="Grabar Audio"
+                        FontAttributes="Bold"/>
+
+                    <Image 
+                        x:Name="imgSitio" 
+                        Grid.Row="7" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Margin="15, 20, 10, 5" 
+                        Aspect="AspectFill"  
+                        HeightRequest="200" 
+                        HorizontalOptions="FillAndExpand" 
+                        Source="{Binding Foto, Converter={StaticResource BaseArray}}" 
+                        VerticalOptions="CenterAndExpand" 
+                        WidthRequest="260" />
+
+                    <Button 
+                        x:Name="btnTomarFoto" 
+                        Grid.Row="8" 
+                        Grid.Column="0"  
+                        Grid.ColumnSpan="2"
+                        Margin="15, 10, 15, 10"
+                        HeightRequest="50"
+                        Command="{Binding FotoCommand}" 
+                        CommandParameter="{Binding .}" 
+                        CornerRadius="0" 
+                        FontSize="16"
+                        Text="Tomar Foto"
+                        BackgroundColor="#7678ED"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="9" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                        Text="Crear Nota" 
+                        Margin="15, 20, 15, 10"
+                        HeightRequest="50"
+                        Command="{Binding CreateCommand}" 
+                        BackgroundColor="#31572c"  
+                        FontSize="16" 
+                        CornerRadius="0"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="10" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="#F7B801" 
+                        Margin="15, 0, 15, 10"
+                        HeightRequest="50"
+                        Command="{Binding UpdateCommand}"
+                        IsVisible="{Binding VisibilityUpdate}" 
+                        FontSize="16" 
+                        Text="Actualizar Nota" 
+                        FontAttributes="Bold"
+                        CornerRadius="0"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

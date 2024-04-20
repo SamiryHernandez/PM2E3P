@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:convert="clr-namespace:Examen.Convertir"
+    xmlns:local="clr-namespace:Examen.Views"
+    x:Class="Examen.Views.PageListNotes"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="#0f172a">
+
+    <ContentPage.Resources>
+        <convert:base64Image 
+            x:Key="BaseArray" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout 
+                Margin="10" 
+                VerticalOptions="FillAndExpand">
+
+                <Label 
+                    Margin="5, 20, 5, 20"
+                    Text="Menu de opciones"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Title"
+                    />
+
+                <Grid
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Fill"
+                    Margin="0, 18">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition 
+                            Height="80" />
+                        <RowDefinition 
+                            Height="80" />
+                        <RowDefinition 
+                            Height="80" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition 
+                            Width="*" />
+                        <ColumnDefinition 
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5"
+                        Command="{Binding NuevoProductoCommand}" 
+                        CommandParameter="{x:Type local:MemoryPage}" 
+                        CornerRadius="0" 
+                        Text="Crear Nota"
+                        BackgroundColor="#3D348B"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5"
+                        Command="{Binding GoToDetailsCommand}" 
+                        CommandParameter="{x:Type local:MemoryPage}" 
+                        CornerRadius="0" 
+                        Text="Actualizar Nota" 
+                        BackgroundColor="#F7B801"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5"
+                        Command="{Binding DeleteCommand}" 
+                        CommandParameter="{x:Type local:MemoryPage}" 
+                        CornerRadius="0" 
+                        Text="Borrar Nota" 
+                        BackgroundColor="#F35B04"
+                        FontAttributes="Bold"/>
+
+                     <Button 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5"
+                        Command="{Binding HearCommand}" 
+                        CommandParameter="{x:Type local:MemoryPage}" 
+                        CornerRadius="0" 
+                        Text="Reproducir Audio" 
+                        BackgroundColor="#7678ED"
+                        FontAttributes="Bold"/>
+
+                    <Button 
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="5"
+                        Command="{Binding ChangeOrderByCommand}" 
+                        CommandParameter="{x:Type local:MemoryPage}" 
+                        CornerRadius="0" 
+                        Text="Filtrar por mas reciente a mas antiguo" 
+                        BackgroundColor="#F18701"
+                        FontAttributes="Bold"/>
+                </Grid>
+
+                <ListView 
+                    ItemsSource="{Binding memo}" 
+                    SelectedItem="{Binding SelectedMemory}" 
+                    RowHeight="60"
+                    Margin="5">
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout 
+                                    Orientation="Horizontal" >
+                                    
+                                    <Image 
+                                        HeightRequest="75" 
+                                        Source="{Binding Foto, Converter={StaticResource BaseArray}}" 
+                                        WidthRequest="75"/>
+                                    
+                                    <StackLayout 
+                                        Orientation="Vertical" 
+                                        VerticalOptions="CenterAndExpand">
+                                        
+                                        <Label 
+                                            FontSize="14" 
+                                            Text="{Binding Desc ,StringFormat='Descripcion: {0}' }" 
+                                            TextColor="#ebedec" 
+                                            VerticalOptions="Center"/>
+                                        
+                                        <Label 
+                                            FontSize="12" 
+                                            Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}" 
+                                            TextColor="#ebedec" 
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
